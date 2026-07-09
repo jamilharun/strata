@@ -15,12 +15,13 @@ const SECURITY_HEADERS: Record<string, string> = {
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
-    "frame-ancestors 'none'",
+    // Framing allowed only from the portfolio (X-Frame-Options omitted:
+    // it cannot express an origin allowlist; frame-ancestors supersedes it)
+    "frame-ancestors 'self' https://portfolio.jamilharun.workers.dev",
     'upgrade-insecure-requests',
   ].join('; '),
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
   'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
   'Cross-Origin-Opener-Policy': 'same-origin',
